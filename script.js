@@ -1,12 +1,12 @@
-//This function will randomly generate rock, paper or scissors to play against the user.//
+//Randomly generate a string "rock", "paper" or "scissors".//
 function computerPlay () {
     let computerChoice = ['rock', 'paper', 'scissors'];
     let randomItem = computerChoice[Math.floor(Math.random()*computerChoice.length)];
     return computerSelection = randomItem;
 }
 
-//computerPlay();
 
+//Asks user to input rock, paper or scissors, and converts the input to lower case.//
 function userInput() {
     let userChoice = prompt('Please Enter Rock, Paper or Scissors', 'Rock').toLowerCase();
     if (userChoice != 'rock' && userChoice != 'paper' && userChoice != 'scissors') {
@@ -16,15 +16,8 @@ function userInput() {
     }
 }
 
-//userInput();
-
-
-
-//Tout ce qui est au dessus fonctionne : La fonction computerPlay génère aléatoirement un choix 
-//et retourne ce choix dans la variable computerSelection.
-//La fonction userInput demande à l'utilisateur de choisir rock, paper ou scissors et retourne le choix dans 
-//la variable playerSelection. Maintenant il faut remplir la fonction playRound avec les input.
-
+//Plays one round once the playerSelection and computerSelection are defined.//
+//Returns the appropriate statement if the user win, or draw against the computer.//
 function playRound (playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return "It's a draw!";
@@ -49,18 +42,14 @@ function playRound (playerSelection, computerSelection) {
     }       
 }
 
-//console.log('You played ' + playerSelection)
-//console.log('The computer played ' + computerSelection)
-//console.log(playRound(playerSelection, computerSelection));
-
-// Everything above works as intended. The computer generate a random choice between rock, paper and scissors,
-// and the player is prompt to choose as well. Then, the function playRound test each case to determine wether it 
-// is a draw first, then win or lose, and return the appropriate statement. I've tested every single case possible and they all worked.
-
 let userScore = 0;
 let computerScore = 0;
 
-function game() {
+
+//The function playGame puts together the above functions: The computerPlay generates a random choice,//
+//the userInput asks a user to input their choice, and playRound plays a round and return a win, lose a draw statment.//
+//The playGame function return the updated score of the user and/or computer after one round.// 
+function playGame() {
     computerPlay();
     userInput();
     playRound();
@@ -75,13 +64,14 @@ function game() {
     }
 }
 
-function match() {
+//Plays a match with multiple rounds, keeps score, and announce the winner at the end.//
+function playMatch() {
     let numberOfRound = parseInt(prompt('Enter the number of round:', '3'));
     if (numberOfRound < 0 || numberOfRound > 100) {
         console.log('Please enter a valid number.');
     } else { 
         for (var i = 0; i < numberOfRound; i++) {
-        game();
+        playGame();
         }
         console.log('Your score: ' + userScore);
         console.log('Computer score: ' + computerScore);
@@ -95,5 +85,5 @@ function match() {
     }    
 }
 
-match();
+playMatch();
 
